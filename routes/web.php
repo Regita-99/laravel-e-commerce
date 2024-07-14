@@ -21,3 +21,4 @@ Route::get('/DaftarProduk', [DaftarProdukController::class , 'index']);
 Route::get('/DetailProduk', [DetailProdukController::class , 'index']);
 Route::post('/Admin', [ProductController::class, 'store'])->name('savedata');
 Route::delete('/products/{id}', [ProductController::class, 'delete'])->name('products.delete');
+

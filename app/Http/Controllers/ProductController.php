@@ -41,5 +41,25 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'Product deleted successfully');
     }
-    
+    public function update(Request $request, $id)
+    {
+        // Validasi data yang diterima dari form
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+        ]);
+
+        // Cari produk berdasarkan ID
+        $product = Product::find($id);
+
+        // Update atribut produk dengan data baru dari form
+        $product->name = $request->name;
+        $product->price = $request->price;
+        
+        // Simpan perubahan ke dalam database
+        $product->save();
+
+        // Redirect atau return response sesuai kebutuhan Anda
+        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+    }
 }

@@ -6,6 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function openEditModal(id, name, price) {
+            // Logika untuk menetapkan nilai dan menampilkan modal
+            document.getElementById('editModal').style.display = 'block';
+            // Contoh: menetapkan nilai ke dalam form modal
+            document.getElementById('modalId').value = id;
+            document.getElementById('modalName').value = name;
+            document.getElementById('modalPrice').value = price;
+        }
+    
+        function closeEditModal() {
+            // Logika untuk menutup modal
+            document.getElementById('editModal').style.display = 'none';
+        }
+    </script>
+    
 </head>
 <body class="bg-gray-100">
     <div class="flex min-h-screen">
@@ -74,7 +90,9 @@
                             <td class="px-4 py-2">{{ $items->name }}</td>
                             <td class="px-4 py-2">{{ $items->price }}</td>
                             <td class=" flex px-4 py-2">
-                                <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-700">Edit</button>
+                                <!-- Example usage in a table -->
+                                <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-700" onclick="openEditModal('{{ $items->id }}', '{{ $items->name }}', '{{ $items->price }}')">
+                                    Edit</button>
 
                                 <form action="{{ route('products.delete', $items->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?')">
                                     @csrf
@@ -89,7 +107,9 @@
                     </tbody>
                 </table>
             </div>
+
         </div>
     </div>
+    
 </body>
 </html>
