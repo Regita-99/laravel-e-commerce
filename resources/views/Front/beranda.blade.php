@@ -56,7 +56,8 @@
                     <img src="{{ asset('img/images/' . $item->image) }}" alt="Product 1" class="w-full h-48 object-cover mb-4">
                     <h3 class="font-semibold">{{ $item->name }}</h3>
                     <p class="text-gray-600">Rp. {{ $item->price }}</p>
-                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Add to Cart</button>
+                    <a href="{{ route('product.show', $item->id) }}" class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Detail</a>
+                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Detail</button>
                 </div>
                 @endforeach
                 

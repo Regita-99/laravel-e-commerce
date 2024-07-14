@@ -11,4 +11,9 @@ class DaftarProdukController extends Controller
         $list = Product::latest()->get();
         return view('Front.daftarProduk',compact('list'));
     } 
+    public function show($id)
+    {
+        $detail = Product::findOrFail($id);
+        return view('Front.detailProduk', compact('detail'));
+    }
 }

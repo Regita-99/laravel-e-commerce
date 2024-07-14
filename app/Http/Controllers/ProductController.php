@@ -32,5 +32,7 @@ class ProductController extends Controller
         $produk->save();
 
         return  redirect()->route('Admin')->with('success', 'Produk berhasil ditambahkan'); // Redirect ke halaman admin setelah berhasil    }
-}
+    }
+
+    
 }

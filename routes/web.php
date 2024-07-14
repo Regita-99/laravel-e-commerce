@@ -14,8 +14,10 @@ Route::get('/', function () {
 // Route::get('/Beranda', function () {
 //     return view('beranda');
 // });
+Route::get('/DetailProduk/{id}', [DetailProdukController::class, 'show'])->name('product.show');
 Route::get('/Admin', [ProductController::class , 'index']);
 Route::get('/', [BerandaController::class , 'index']);
 Route::get('/DaftarProduk', [DaftarProdukController::class , 'index']);
 Route::get('/DetailProduk', [DetailProdukController::class , 'index']);
+// Route::get('/DetailProduk/{id}', [ProductController::class, 'show'])->name('detail');
 Route::post('/Admin', [ProductController::class, 'store'])->name('savedata');

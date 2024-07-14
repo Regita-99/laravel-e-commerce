@@ -25,7 +25,16 @@
             </div>
         </div>
     </header>
+    <div>
+        <img src="{{ asset('img/images/' . $produk->image) }}" alt="Product 1" class="w-48 h-48 object-cover mb-4">
+        <h1>
+            {{ $produk->name }}
+        </h1>
+        <h2>
+            {{ $produk->price }}
 
+        </h2>
+    </div>
     <div class="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-6">
         <h1 class="text-3xl font-bold">Coral PIK Seven</h1>
         <p class="text-gray-500 mt-1">Where dreams live begin without worried ipsum.</p>
