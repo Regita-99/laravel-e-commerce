@@ -34,5 +34,12 @@ class ProductController extends Controller
         return  redirect()->route('Admin')->with('success', 'Produk berhasil ditambahkan'); // Redirect ke halaman admin setelah berhasil    }
     }
 
+    public function delete($id)
+    {
+        $product = Product::find($id);
+        $product->delete();
+
+        return redirect()->back()->with('success', 'Product deleted successfully');
+    }
     
 }

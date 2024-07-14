@@ -67,19 +67,22 @@
                         <!-- Example Rows -->
                         <!--Repeat for each product in the database -->
                         @foreach ($item as $items)
-                        
                         <tr class="border-t">
                             <td class="px-4 py-2">
                                 <img src="{{ asset('img/images/' . $items->image) }}" class="w-20 h-20 object-cover">
                             </td>
                             <td class="px-4 py-2">{{ $items->name }}</td>
                             <td class="px-4 py-2">{{ $items->price }}</td>
-                            <td class="px-4 py-2">
+                            <td class=" flex px-4 py-2">
                                 <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-700">Edit</button>
-                                <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700">Delete</button>
+
+                                <form action="{{ route('products.delete', $items->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700">Delete</button>
+                                </form>
                             </td>
                         </tr>
-                        
                         @endforeach
                     
                         

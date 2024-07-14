@@ -13,19 +13,11 @@
     <!-- Header -->
     <header class="bg-white shadow">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold">Famita</a>
+            <a href="/" class="text-2xl font-bold">Famita</a>
             <nav class="hidden md:flex space-x-4">
-                <a href="#" class="text-gray-700 hover:text-gray-900">Home</a>
-                <a href="#" class="text-gray-700 hover:text-gray-900">Shop</a>
-                <a href="#" class="text-gray-700 hover:text-gray-900">Elements</a>
-                <a href="#" class="text-gray-700 hover:text-gray-900">Page</a>
-                <a href="#" class="text-gray-700 hover:text-gray-900">Blog</a>
+                <a href="/" class="text-gray-700 hover:text-gray-900">Home</a>
+                <a href="/DaftarProduk" class="text-gray-700 hover:text-gray-900">Shop</a>
             </nav>
-            <div class="space-x-4">
-                <button class="text-gray-700 hover:text-gray-900">Search</button>
-                <button class="text-gray-700 hover:text-gray-900">Cart</button>
-                <button class="text-gray-700 hover:text-gray-900">Profile</button>
-            </div>
         </div>
     </header>
 
@@ -56,8 +48,8 @@
                     <img src="{{ asset('img/images/' . $item->image) }}" alt="Product 1" class="w-full h-48 object-cover mb-4">
                     <h3 class="font-semibold">{{ $item->name }}</h3>
                     <p class="text-gray-600">Rp. {{ $item->price }}</p>
-                    <a href="{{ route('product.show', $item->id) }}" class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Detail</a>
-                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Detail</button>
+                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded" ><a href="{{ route('detail', $item->id) }}" >Detail</a></button>
+
                 </div>
                 @endforeach
                 
