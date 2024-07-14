@@ -37,61 +37,16 @@
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
                 <!-- Product 1 -->
+                @foreach ($list as $List)
                 <div class="bg-white p-4 rounded-lg shadow">
-                    <img src="img/tas1.png" alt="Product 1" class="w-full h-48 object-cover mb-4">
-                    <h3 class="font-semibold">Leather Shopper Bag</h3>
-                    <p class="text-gray-600">$39.00</p>
-                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Add to Cart</button>
+                    <img src="{{ asset('img/images/' . $List->image) }}" class="w-full h-48 object-cover mb-4">
+                    <h3 class="font-semibold">{{ $List->name }}</h3>
+                    <p class="text-gray-600">Rp. {{ $List->price }}</p>
+                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Detail</button>
                 </div>
-                <!-- Product 2 -->
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <img src="img/tas2.png" alt="Product 2" class="w-full h-48 object-cover mb-4">
-                    <h3 class="font-semibold">Pocket Front Shirt</h3>
-                    <p class="text-gray-600">$45.00</p>
-                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Add to Cart</button>
-                </div>
-                <!-- Product 1 -->
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <img src="img/tas1.png" alt="Product 1" class="w-full h-48 object-cover mb-4">
-                    <h3 class="font-semibold">Leather Shopper Bag</h3>
-                    <p class="text-gray-600">$39.00</p>
-                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Add to Cart</button>
-                </div>
-                <!-- Product 2 -->
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <img src="img/tas2.png" alt="Product 2" class="w-full h-48 object-cover mb-4">
-                    <h3 class="font-semibold">Pocket Front Shirt</h3>
-                    <p class="text-gray-600">$45.00</p>
-                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Add to Cart</button>
-                </div>
-                <!-- Product 1 -->
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <img src="img/tas1.png" alt="Product 1" class="w-full h-48 object-cover mb-4">
-                    <h3 class="font-semibold">Leather Shopper Bag</h3>
-                    <p class="text-gray-600">$39.00</p>
-                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Add to Cart</button>
-                </div>
-                <!-- Product 2 -->
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <img src="img/tas2.png" alt="Product 2" class="w-full h-48 object-cover mb-4">
-                    <h3 class="font-semibold">Pocket Front Shirt</h3>
-                    <p class="text-gray-600">$45.00</p>
-                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Add to Cart</button>
-                </div>
-                <!-- Product 1 -->
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <img src="img/tas1.png" alt="Product 1" class="w-full h-48 object-cover mb-4">
-                    <h3 class="font-semibold">Leather Shopper Bag</h3>
-                    <p class="text-gray-600">$39.00</p>
-                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Add to Cart</button>
-                </div>
-                <!-- Product 2 -->
-                <div class="bg-white p-4 rounded-lg shadow">
-                    <img src="img/tas2.png" alt="Product 2" class="w-full h-48 object-cover mb-4">
-                    <h3 class="font-semibold">Pocket Front Shirt</h3>
-                    <p class="text-gray-600">$45.00</p>
-                    <button class="mt-2 px-4 py-2 bg-green-600 text-white rounded">Add to Cart</button>
-                </div>
+                @endforeach
+                
+                
                 <!-- More products... -->
             </div>
         </div>

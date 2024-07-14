@@ -4,46 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB; 
 
 class ProductController extends Controller
 {
-    public function index()
-    {
-        $products = Product::all();
-        return view('admin.dashboard', compact('products'));
+    public function index(){
+        $item = Product::latest()->get();
+        return view('Admin.Admin', compact('item'));
     }
 
-    
-
     public function store(Request $request){
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Menambahkan validasi untuk jenis file gambar
-        ]);
-
         $produk = new Product();
 
         $produk->name = $request->input('name');
         $produk->price = $request->input('price');
         $produk->image = $request->input('image');
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
-            $file->move('img/image' . $filename);
-            $produk->image = $filename;
-        } else{
-            return $request;
-            $produk ->image = '';
+            $file->move(public_path('img/images'), $filename); // Simpan file ke direktori 'public/images'
+            $produk->image = $filename; // Simpan nama file ke dalam kolom 'image'
+        } else {
+            $produk->image = ''; // Atau nilai default jika tidak ada file yang diunggah
         }
 
         $produk->save();
 
-        return  redirect()->route('/admin')->with('success', 'Produk berhasil ditambahkan'); // Redirect ke halaman admin setelah berhasil
-    
-    }
+        return  redirect()->route('Admin')->with('success', 'Produk berhasil ditambahkan'); // Redirect ke halaman admin setelah berhasil    }
+}
 }

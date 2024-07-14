@@ -65,54 +65,24 @@
                     </thead>
                     <tbody>
                         <!-- Example Rows -->
-                        <!-- Repeat for each product in the database -->
-                        @foreach ($produk as $item)
+                        <!--Repeat for each product in the database -->
+                        @foreach ($item as $items)
+                        
                         <tr class="border-t">
                             <td class="px-4 py-2">
-                                {{-- <img src="{{ asset('image/' . $item->image) }}" class="w-20 h-20 object-cover" alt="{{ $item->name }}"> --}}
+                                <img src="{{ asset('img/images/' . $items->image) }}" class="w-20 h-20 object-cover">
                             </td>
-                            <td class="px-4 py-2">{{ $item->name }}</td>
-                            <td class="px-4 py-2">{{ $item->price }}</td>
+                            <td class="px-4 py-2">{{ $items->name }}</td>
+                            <td class="px-4 py-2">{{ $items->price }}</td>
                             <td class="px-4 py-2">
                                 <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-700">Edit</button>
                                 <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700">Delete</button>
                             </td>
                         </tr>
+                        
                         @endforeach
                     
-                        <tr class="border-t">
-                            <td class="px-4 py-2">
-                                <img src="path/to/image.jpg" alt="Product Image" class="w-20 h-20 object-cover">
-                            </td>
-                            <td class="px-4 py-2">Example Product</td>
-                            <td class="px-4 py-2">$100</td>
-                            <td class="px-4 py-2">
-                                <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-700">Edit</button>
-                                <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700">Delete</button>
-                            </td>
-                        </tr>
-                        <tr class="border-t">
-                            <td class="px-4 py-2">
-                                <img src="path/to/image.jpg" alt="Product Image" class="w-20 h-20 object-cover">
-                            </td>
-                            <td class="px-4 py-2">Example Product</td>
-                            <td class="px-4 py-2">$100</td>
-                            <td class="px-4 py-2">
-                                <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-700">Edit</button>
-                                <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700">Delete</button>
-                            </td>
-                        </tr>
-                        <tr class="border-t">
-                            <td class="px-4 py-2">
-                                <img src="path/to/image.jpg" alt="Product Image" class="w-20 h-20 object-cover">
-                            </td>
-                            <td class="px-4 py-2">Example Product</td>
-                            <td class="px-4 py-2">$100</td>
-                            <td class="px-4 py-2">
-                                <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-700">Edit</button>
-                                <button class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700">Delete</button>
-                            </td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
