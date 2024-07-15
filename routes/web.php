@@ -3,6 +3,7 @@
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\DaftarProdukController;
 use App\Http\Controllers\DetailProdukController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -22,4 +23,5 @@ Route::get('/DetailProduk', [DetailProdukController::class , 'index']);
 Route::post('/Admin', [ProductController::class, 'store'])->name('savedata');
 Route::delete('/products/{id}', [ProductController::class, 'delete'])->name('products.delete');
 Route::resource('products', ProductController::class);
+Route::get('/login', [LoginController::class, 'index']);
 

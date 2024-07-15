@@ -11,15 +11,7 @@
 <body class="bg-gray-50 font-sans antialiased text-gray-900">
 
     <!-- Header -->
-    <header class="bg-white shadow">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold">Famita</a>
-            <nav class="hidden md:flex space-x-4">
-                <a href="/" class="text-gray-700 hover:text-gray-900">Home</a>
-                <a href="/DaftarProduk" class="text-gray-700 hover:text-gray-900">Shop</a>
-            </nav>
-        </div>
-    </header>
+    @include('Component.navbar')
 
     <!-- Hero Section -->
     <section class="bg-blue-100 py-16">
@@ -59,16 +51,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; 2024 Famita. All rights reserved.</p>
-            <div class="mt-4 space-x-4">
-                <a href="#" class="hover:underline">Privacy Policy</a>
-                <a href="#" class="hover:underline">Terms of Service</a>
-                <a href="#" class="hover:underline">Contact Us</a>
-            </div>
-        </div>
-    </footer>
+    @include('Component.footer')
 
     <!-- Tailwind CSS script -->
     <script src="https://cdn.tailwindcss.com"></script>
