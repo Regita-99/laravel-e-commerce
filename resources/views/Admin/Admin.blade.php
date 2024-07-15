@@ -6,22 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        function openEditModal(id, name, price) {
-            // Logika untuk menetapkan nilai dan menampilkan modal
-            document.getElementById('editModal').style.display = 'block';
-            // Contoh: menetapkan nilai ke dalam form modal
-            document.getElementById('modalId').value = id;
-            document.getElementById('modalName').value = name;
-            document.getElementById('modalPrice').value = price;
-        }
-    
-        function closeEditModal() {
-            // Logika untuk menutup modal
-            document.getElementById('editModal').style.display = 'none';
-        }
-    </script>
-    
 </head>
 <body class="bg-gray-100">
     <div class="flex min-h-screen">
@@ -49,7 +33,7 @@
                 <h3 class="text-xl font-semibold mb-4">Insert Product</h3>
 
                 <form action="{{ route('savedata') }}" method="POST" enctype="multipart/form-data">
-                    {{csrf_field()  }}
+                    {{ csrf_field() }}
                     <div class="flex space-x-4 mb-4">
                         <div class="w-1/2">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="product-name">Product Name</label>
@@ -62,7 +46,8 @@
                     </div>
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="image">Image</label>
-                        <input type="file" id="image" name="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                        <input type="file" id="image" name="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required onchange="displayFileName()">
+                        <span id="file-name" class="block text-gray-600 mt-2"></span>
                     </div>
                     <button type="submit" class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-700">Upload</button>
                 </form>
@@ -80,8 +65,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Example Rows -->
-                        <!--Repeat for each product in the database -->
                         @foreach ($item as $items)
                         <tr class="border-t">
                             <td class="px-4 py-2">
@@ -90,10 +73,7 @@
                             <td class="px-4 py-2">{{ $items->name }}</td>
                             <td class="px-4 py-2">{{ $items->price }}</td>
                             <td class=" flex px-4 py-2">
-                                <!-- Example usage in a table -->
-                                <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-700" onclick="openEditModal('{{ $items->id }}', '{{ $items->name }}', '{{ $items->price }}')">
-                                    Edit</button>
-
+                                <button class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-700" onclick="openEditModal('{{ $items->id }}', '{{ $items->name }}', '{{ $items->price }}', '{{ $items->image }}')">Edit</button>
                                 <form action="{{ route('products.delete', $items->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?')">
                                     @csrf
                                     @method('DELETE')
@@ -102,14 +82,70 @@
                             </td>
                         </tr>
                         @endforeach
-                    
-                        
                     </tbody>
                 </table>
             </div>
-
         </div>
     </div>
     
+    <!-- Edit Modal -->
+    <div id="editModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white p-6 rounded-lg shadow-md w-1/2">
+            <h3 class="text-xl font-semibold mb-4">Edit Product</h3>
+            <form id="editForm" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                {{ method_field('PUT') }}
+                <input type="hidden" id="edit-id" name="id">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="edit-name">Product Name</label>
+                    <input type="text" id="edit-name" name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="edit-price">Price</label>
+                    <input type="number" id="edit-price" name="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="edit-image">Image</label>
+                    <input type="file" id="edit-image" name="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" onchange="displayEditFileName()">
+                    <span id="edit-file-name" class="block text-gray-600 mt-2"></span>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="current-image">Current Image</label>
+                    <span id="current-image" class="block text-gray-600 mt-2">{{ $product->image ?? 'No image uploaded' }}</span>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-700 mr-2" onclick="closeEditModal()">Cancel</button>
+                    <button type="submit" class="bg-blue-900 text-white px-4 py-2 rounded hover:bg-blue-700">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openEditModal(id, name, price, image) {
+            document.getElementById('edit-id').value = id;
+            document.getElementById('edit-name').value = name;
+            document.getElementById('edit-price').value = price;
+            document.getElementById('current-image').innerText = image ? image : 'No image uploaded';
+            document.getElementById('editForm').action = '/products/' + id;
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+        }
+
+        function displayFileName() {
+            var input = document.getElementById('image');
+            var fileName = input.files[0] ? input.files[0].name : 'No file selected';
+            document.getElementById('file-name').innerText = fileName;
+        }
+
+        function displayEditFileName() {
+            var input = document.getElementById('edit-image');
+            var fileName = input.files[0] ? input.files[0].name : 'No file selected';
+            document.getElementById('edit-file-name').innerText = fileName;
+        }
+    </script>
 </body>
 </html>

@@ -15,10 +15,11 @@ Route::get('/', function () {
 //     return view('beranda');
 // });
 Route::get('/DetailProduk/{id}', [DetailProdukController::class, 'show'])->name('detail');
-Route::get('/Admin', [ProductController::class , 'index']);
+Route::get('/Admin', [ProductController::class , 'index'])->name('Admin');
 Route::get('/', [BerandaController::class , 'index']);
 Route::get('/DaftarProduk', [DaftarProdukController::class , 'index']);
 Route::get('/DetailProduk', [DetailProdukController::class , 'index']);
 Route::post('/Admin', [ProductController::class, 'store'])->name('savedata');
 Route::delete('/products/{id}', [ProductController::class, 'delete'])->name('products.delete');
+Route::resource('products', ProductController::class);
 

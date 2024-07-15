@@ -43,23 +43,36 @@ class ProductController extends Controller
     }
     public function update(Request $request, $id)
     {
-        // Validasi data yang diterima dari form
+        // Validate the request data
         $request->validate([
             'name' => 'required|string|max:255',
             'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        // Cari produk berdasarkan ID
+        // Find the product by ID
         $product = Product::find($id);
 
-        // Update atribut produk dengan data baru dari form
+        // Update the product details
         $product->name = $request->name;
         $product->price = $request->price;
-        
-        // Simpan perubahan ke dalam database
+
+        // Check if an image file is uploaded
+        if ($request->hasFile('image')) {
+            // Upload the image
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('img/images'), $imageName);
+
+            // Update the product image
+            $product->image = $imageName;
+        }
+
+        // Save the updated product
         $product->save();
 
-        // Redirect atau return response sesuai kebutuhan Anda
+        // Redirect back with a success message
         return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
+    
+
 }
