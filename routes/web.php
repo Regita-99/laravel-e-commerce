@@ -26,5 +26,6 @@ Route::post('/Admin', [ProductController::class, 'store'])->name('savedata');
 Route::delete('/products/{id}', [ProductController::class, 'delete'])->name('products.delete');
 Route::resource('products', ProductController::class);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'auth_login']);
 Route::get('/register', [AuthController::class, 'register'])->name('register');
 

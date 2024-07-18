@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
@@ -14,8 +15,11 @@
             <div class="lg:p-12">
                 <h1 class="text-3xl font-bold mb-4">Welcome back!</h1>
                 <p class="text-gray-600 mb-8">Simplify your workflow and boost your productivity with Tuga's App. Get started for free.</p>
-                {{ csrf_field() }}
-                <form action="#" method="POST">
+        
+                @include('Auth.massage')
+                
+                <form action="{{ url('/login') }}" method="POST">
+                    {{ csrf_field() }}
                     <div class="mb-4">
                         <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Username</label>
                         <input type="text" id="username" name="username" class="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
@@ -42,5 +46,9 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
