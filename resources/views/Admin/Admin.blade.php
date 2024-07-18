@@ -19,6 +19,9 @@
             <nav class="flex flex-col space-y-2">
                 <a href="#" class="text-lg font-semibold hover:bg-blue-800 p-2 rounded">Produk</a>
             </nav>
+            <nav class="flex flex-col space-y-2">
+                <a href="{{ url('logout') }}" class="text-lg font-semibold hover:bg-blue-800 p-2 rounded">Logout</a>
+            </nav>
         </div>
         <!-- Main content -->
         <div class="flex-1 p-10">
