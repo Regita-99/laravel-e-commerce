@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function index(){
         $item = Product::latest()->get();
-        return view('Admin.Admin', compact('item'));
+        return view('Admin.dashboard_admin', compact('item'));
     }
 
     public function store(Request $request){

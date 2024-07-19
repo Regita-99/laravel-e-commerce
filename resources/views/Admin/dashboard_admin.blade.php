@@ -10,19 +10,7 @@
 <body class="bg-gray-100">
     <div class="flex min-h-screen">
         <!-- Sidebar -->
-        <div class="bg-blue-900 text-white w-64 space-y-6 py-7 px-2 flex flex-col">
-            <!-- Logo -->
-            <div class="text-center mb-4">
-                <h1 class="text-3xl font-bold">Admin</h1>
-            </div>
-            <!-- Navigation -->
-            <nav class="flex flex-col space-y-2">
-                <a href="#" class="text-lg font-semibold hover:bg-blue-800 p-2 rounded">Produk</a>
-            </nav>
-            <nav class="flex flex-col space-y-2">
-                <a href="{{ url('logout') }}" class="text-lg font-semibold hover:bg-blue-800 p-2 rounded">Logout</a>
-            </nav>
-        </div>
+        @include('Component.sidebar_admin')
         <!-- Main content -->
         <div class="flex-1 p-10">
             <!-- Header with Frontend Button -->
